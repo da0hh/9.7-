@@ -1,0 +1,40 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    setlocale(LC_ALL, "RU");
+    int hoursFrom, hoursThere, minutesFrom, minutesThere; int resultHour = 0, resultMinute = 0; char op;
+    cout << "Введите время отправления (HH:MM): "; cin >> hoursFrom >> op >> minutesFrom;
+    cout << "Введите время прибытия (HH:MM): "; cin >> hoursThere >> op >> minutesThere;
+
+    if (hoursFrom < 0 || hoursFrom > 24) {
+        cout << "Error. Time from.";
+    } 
+    else if (minutesFrom < 0 || minutesFrom > 60) {
+        cout << "Error. Time frome.";
+    }
+    else if (op != ':') {
+        cout << "Error. Forbidden sign.";
+    }
+    else if (hoursThere < 0 || hoursThere > 24) {
+        cout << "Error. Time arriving.";
+    }
+    else if (minutesThere < 0 || minutesThere > 60) {
+        cout << "Error. Time arriving.";
+    }
+    else {
+        if (hoursFrom > hoursThere) {
+            resultHour = 24 - hoursFrom + hoursThere;
+        }
+        else {
+            resultHour = hoursThere - hoursFrom;
+        }
+        if (minutesFrom > minutesThere) {
+            resultMinute = minutesFrom - minutesThere;
+        }
+        else {
+            resultMinute = minutesThere - minutesFrom;
+        }
+        cout << "Поездка составила " << resultHour << " ч. " << resultMinute << " мин.\n";
+    }
+}
