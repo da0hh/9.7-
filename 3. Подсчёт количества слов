@@ -1,26 +1,22 @@
 #include <iostream>
 #include <string>
 
-using namespace std;
-
 int main() {
-    setlocale(LC_ALL, "RU");
-    string text; int count = 0; bool inWord = false;
-    cout << "Введите строку: ";
-    getline(cin, text);
+   setlocale(LC_ALL, "RU");
+   std::string str;
+   std::getline(std::cin, str);
 
-    int i = 0;
-    while (i < text.length()) {
-        if (text[i] == ' ') {
-            inWord = false; 
-        }
-        else {
-            if (!inWord) {
-                count++;    
-                inWord = true;  
-            }
-        }
-        i++; 
-    }
-    cout << "Ответ: " << count << endl;
+   int count = 0;
+
+   if (str.length() > 0 && str[0] != ' ')
+       count++;
+
+   /* Пропускаем первый символ, так как в цикле проверяем символ, который идёт перед текущим */
+   for (int i = 1; i < str.length(); ++i) {
+       /* Если предыдущий символ равен пробелу, а текущий нет */
+       if (str[i-1] == ' ' && str[i] != ' ')
+           count++;
+   }
+
+   std::cout << count << '\n';
 }
