@@ -1,0 +1,48 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+int main() {
+    string first, second;
+    cout << "Введите задуманное число: "; cin >> first >> second;
+
+    bool ok = true;
+    do {
+        ok = first.length() == 4 && second.length() == 4;
+        if (ok) {
+            for (int i = 0; i < 4; ++i) {
+                if (first[i] < '0' || first[i] > '9') ok = false;
+                if (second[i] < '0' || second[i] > '9') ok = false;
+            }
+        }
+        if (!ok) {
+            cout << "Incorrect input! Try again!\n";
+            cin >> first >> second;
+        }
+    } while (!ok);
+
+    int bulls = 0;
+    int cows = 0;
+    for (int i = 0; i < 4; i++) {
+        if (first[i] == second[i]) {
+            bulls++;
+            first[i] = 'b';
+            second[i] = 'b';
+        }
+    }
+
+    for (int i = 0; i < 4; i++) {
+        if (first[i] == 'b')
+            continue;
+        for (int j = 0; j < 4; j++)
+        {
+            if (i != j && first[i] == second[j])
+            {
+                cows++;
+                first[i] = 'c'; 
+            }
+        }
+    }
+    cout << "Bulls: " << bulls << ", cows: " << cows << '\n';
+}
