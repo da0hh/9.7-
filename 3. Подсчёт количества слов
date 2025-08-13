@@ -1,0 +1,26 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+int main() {
+    setlocale(LC_ALL, "RU");
+    string text; int count = 0; bool inWord = false;
+    cout << "Введите строку: ";
+    getline(cin, text);
+
+    int i = 0;
+    while (i < text.length()) {
+        if (text[i] == ' ') {
+            inWord = false; 
+        }
+        else {
+            if (!inWord) {
+                count++;    
+                inWord = true;  
+            }
+        }
+        i++; 
+    }
+    cout << "Ответ: " << count << endl;
+}
